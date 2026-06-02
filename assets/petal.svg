@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="155.15" height="113.497" viewBox="0 0 155.15 113.497" fill="none">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="rgba(255,114,97,0.34)"></stop>
+      <stop offset="0.13" stop-color="rgba(255,126,51,0.34)"></stop>
+      <stop offset="1" stop-color="rgb(255,74,52)"></stop>
+    </linearGradient>
+  </defs>
+  <path d="M 0.33 60.925 C 0.33 83.898 23.427 113.497 68.74 113.497 C 107.418 113.497 148.881 84.703 153.935 56.416 C 162.597 7.929 122.906 -6.131 100.195 2.295 C 82.653 8.803 61.224 34.599 52.455 34.599 C 48.521 34.599 42.022 28.13 36.835 22.426 C 32.138 17.271 25.228 17.055 18.632 20.427 C 13.68 22.975 -2.503 34.599 0.33 60.925 Z" fill="url(#bodyGrad)" fill-rule="nonzero"></path>
+</svg>

@@ -1,0 +1,118 @@
+/* =====================================================================
+   Ailter Design System — Color & Type tokens
+   Measured from Test_Ailter.fig (frames 1:663 splash/login, 1:688 age-select)
+   ===================================================================== */
+
+/* ---- Fonts (CDN; see README substitution flag — no offline files) ---- */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+@import url("https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css");
+@import url("https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css");
+
+:root {
+  /* ---------------- Color · primitives ---------------- */
+  --coral-500: rgb(255, 60, 56);     /* brand action: CTA, selected border, progress */
+  --coral-600: rgb(255, 28, 0);      /* wordmark only */
+  --coral-050: rgb(255, 248, 248);   /* selected-row tint */
+
+  --gray-000: rgb(255, 255, 255);    /* elevated / sticker surface */
+  --gray-050: rgb(249, 250, 251);    /* app canvas */
+  --gray-100: rgb(233, 235, 239);    /* hairline border / Apple chip / disabled fill */
+  --gray-400: rgb(170, 172, 180);    /* disabled text */
+  --gray-600: rgb(111, 113, 124);    /* secondary / helper text */
+  --gray-900: rgb(30, 30, 30);       /* primary text */
+  --chevron:  rgb(84, 84, 81);       /* back-chevron stroke */
+
+  /* brand-partner (use only on their own surfaces) */
+  --kakao-yellow: rgb(249, 224, 0);
+  --kakao-brown:  #3A1D1D;
+  --apple-chip:   rgb(233, 235, 239);
+
+  /* mascot */
+  --tomato-grad: linear-gradient(180deg, rgba(255,114,97,.34) 0%, rgba(255,126,51,.34) 13%, rgb(255,74,52) 100%);
+  --stem-grad:   linear-gradient(180deg, rgb(126,70,55) 0%, rgb(53,32,27) 100%);
+  --eye:         rgb(18, 18, 18);
+
+  /* ---------------- Color · semantic ---------------- */
+  --bg: var(--gray-050);
+  --surface: var(--gray-000);
+  --border: var(--gray-100);
+  --accent: var(--coral-500);
+  --accent-strong: var(--coral-600);
+  --accent-tint: var(--coral-050);
+  --text: var(--gray-900);
+  --text-muted: var(--gray-600);
+  --text-disabled: var(--gray-400);
+  --on-accent: var(--gray-050);
+
+  /* ---------------- Type · families ---------------- */
+  --font-body: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+  --font-display: "Wanted Sans Variable", "Wanted Sans", "Pretendard Variable", sans-serif;
+  --font-button: "SUIT Variable", SUIT, "Pretendard Variable", sans-serif;
+
+  /* ---------------- Type · scale (size / weight / tracking) ---------------- */
+  --display-size: 56px;  --display-weight: 900;  --display-track: -0.04em;
+  --h1-size: 24px;       --h1-weight: 700;       --h1-track: -0.02em;
+  --body-size: 16px;     --body-weight: 400;     --body-track: -0.02em;
+  --label-size: 14px;    --label-weight: 500;    --label-track: -0.02em;
+  --button-size: 14px;   --button-weight: 500;   --button-track: -0.016em;
+  --leading: 1.5;
+
+  /* ---------------- Space / shape / elevation ---------------- */
+  --gutter: 20px;          /* screen edge padding */
+  --gap-options: 16px;     /* between option rows */
+  --gap-buttons: 12px;     /* between login buttons */
+  --r-sm: 4px;             /* icon hit-area */
+  --r-md: 8px;             /* social buttons */
+  --r-lg: 12px;            /* option rows + CTA */
+  --h-social: 52px;
+  --h-control: 56px;       /* option rows + CTA */
+  --h-icon: 36px;
+
+  --shadow-sticker: 0 4px 22.7px rgba(0,0,0,.14);
+  --shadow-button: 0 1px 2px rgba(0,0,0,.05);
+
+  --ease: cubic-bezier(0.4, 0, 0.15, 1);
+  --t-fast: 0.18s;
+  --t-screen: 0.42s;
+}
+
+/* =====================================================================
+   Semantic helpers
+   ===================================================================== */
+.ds-display { font-family: var(--font-display); font-weight: var(--display-weight);
+  font-size: var(--display-size); letter-spacing: var(--display-track);
+  line-height: var(--leading); color: var(--accent-strong);
+  text-shadow: 0 1px 6px rgba(0,0,0,.16); }
+
+.ds-h1 { font-family: var(--font-body); font-weight: var(--h1-weight);
+  font-size: var(--h1-size); letter-spacing: var(--h1-track); line-height: 1.35; color: var(--text); }
+
+.ds-body { font-family: var(--font-body); font-weight: var(--body-weight);
+  font-size: var(--body-size); letter-spacing: var(--body-track); line-height: var(--leading); color: var(--text-muted); }
+
+.ds-label { font-family: var(--font-body); font-weight: var(--label-weight);
+  font-size: var(--label-size); letter-spacing: var(--label-track); line-height: 1; color: var(--text); }
+
+/* ---- Buttons ---- */
+.ds-btn { height: var(--h-control); border-radius: var(--r-lg); border: none;
+  font-family: var(--font-body); font-weight: var(--button-weight); font-size: var(--button-size);
+  letter-spacing: var(--label-track); cursor: pointer;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease); }
+.ds-btn--primary { background: var(--accent); color: var(--on-accent); }
+.ds-btn--primary:disabled { background: var(--border); color: var(--text-disabled); cursor: not-allowed; }
+
+.ds-social { height: var(--h-social); border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--font-button); font-weight: 500; font-size: var(--button-size);
+  letter-spacing: var(--button-track); border: none; cursor: pointer; }
+.ds-social--kakao { background: var(--kakao-yellow); color: #000; }
+.ds-social--google { background: var(--surface); color: #000; border: 1px solid var(--border); box-shadow: var(--shadow-button); }
+.ds-social--apple { background: var(--apple-chip); color: #000; }
+
+/* ---- Option row ---- */
+.ds-option { height: var(--h-control); border-radius: var(--r-lg); padding: 0 16px;
+  display: flex; align-items: center; text-align: left; background: var(--bg);
+  border: 1px solid var(--border); color: var(--text-muted);
+  font-family: var(--font-body); font-weight: 500; font-size: var(--label-size); letter-spacing: var(--label-track);
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease); }
+.ds-option[aria-selected="true"] { background: var(--accent-tint); border-color: var(--accent); color: var(--text); }

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ailter — Design System</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--font-body); letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 32px 120px; }
+
+  /* ---- hero ---- */
+  header.hero {
+    padding: 80px 32px 56px; max-width: 980px; margin: 0 auto;
+    display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
+  }
+  .hero .sticker { background: #fff; box-shadow: var(--shadow-sticker); display: flex; }
+  .hero .sticker img { width: 132px; display: block; }
+  .hero h1 { font-family: var(--font-display); font-weight: 900; font-size: 64px;
+    letter-spacing: -0.04em; color: var(--accent-strong); margin: 0 0 6px;
+    text-shadow: 0 1px 6px rgba(0,0,0,.16); }
+  .hero p { font-size: 17px; color: var(--text-muted); margin: 0 0 14px; }
+  .hero .meta { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-muted); }
+
+  /* ---- section ---- */
+  section { margin-top: 64px; }
+  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .sec-head h2 { font-size: 22px; font-weight: 700; margin: 0; color: var(--text); }
+  .sec-head .ko { font-size: 13px; color: var(--text-muted); }
+  .sec-note { font-size: 13px; color: var(--text-muted); margin: -8px 0 22px; line-height: 1.6; max-width: 640px; }
+
+  .grid { display: grid; gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
+
+  /* swatches */
+  .swatches { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .sw { border-radius: 12px; }
+  .sw .chip { height: 72px; border-radius: 10px; border: 1px solid rgba(0,0,0,.06); }
+  .sw .nm { font-size: 13px; font-weight: 600; margin-top: 12px; }
+  .sw .vl { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .sw .role { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+  /* type */
+  .type-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .type-row:last-child { border-bottom: none; }
+  .type-row .spec { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--text-muted);
+    white-space: nowrap; text-align: right; }
+
+  /* tokens (spacing) */
+  .tok-grid { grid-template-columns: repeat(3, 1fr); }
+  .tok .demo { display: flex; align-items: center; gap: 12px; height: 72px; }
+  .tok .bar { background: var(--accent); border-radius: 6px; height: 14px; }
+  .tok .sq { background: var(--accent-tint); border: 1px solid var(--accent); }
+  .tok .nm { font-size: 13px; font-weight: 600; margin-top: 10px; }
+  .tok .vl { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  .elev-grid { grid-template-columns: repeat(3, 1fr); }
+  .elev .box { height: 84px; border-radius: 12px; background: #fff; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; color: var(--text-muted); }
+
+  /* components showcase */
+  .comp-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .comp .label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 14px;
+    text-transform: uppercase; letter-spacing: 0.02em; }
+  .stack { display: flex; flex-direction: column; gap: 12px; max-width: 320px; }
+  .stack-16 { gap: 16px; }
+  .phone-link { display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    background: var(--accent); color: var(--on-accent); font-weight: 500; font-size: 15px;
+    padding: 14px 22px; border-radius: 12px; transition: filter .15s ease; }
+  .phone-link:hover { filter: brightness(0.95); }
+
+  @media (max-width: 720px) {
+    .comp-grid { grid-template-columns: 1fr; }
+    .tok-grid, .elev-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="sticker"><img src="assets/logo-mark.svg" alt="Ailter mascot" /></div>
+  <div>
+    <h1>Ailter</h1>
+    <p>청소년을 위한 AI 콘텐츠 신뢰 판단 서비스</p>
+    <div class="meta">Design System · reconstructed from Test_Ailter.fig</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ COLORS ============ -->
+  <section id="colors">
+    <div class="sec-head"><h2>Color tokens</h2><span class="ko">컬러 토큰 · 프라이머리 / 뉴트럴 / 시맨틱</span></div>
+
+    <h3 style="font-size:14px;color:var(--text-muted);margin:0 0 12px;font-weight:600">Primary</h3>
+    <div class="grid swatches" style="margin-bottom:28px">
+      <div class="card sw"><div class="chip" style="background:var(--accent)"></div><div class="nm">--coral-500</div><div class="vl">rgb(255,60,56)</div><div class="role">action · CTA · selected border · progress</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--accent-strong)"></div><div class="nm">--coral-600</div><div class="vl">rgb(255,28,0)</div><div class="role">wordmark only</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--accent-tint)"></div><div class="nm">--coral-050</div><div class="vl">rgb(255,248,248)</div><div class="role">selected-row tint</div></div>
+    </div>
+
+    <h3 style="font-size:14px;color:var(--text-muted);margin:0 0 12px;font-weight:600">Neutral</h3>
+    <div class="grid swatches" style="margin-bottom:28px">
+      <div class="card sw"><div class="chip" style="background:var(--gray-000)"></div><div class="nm">--gray-000</div><div class="vl">#FFFFFF</div><div class="role">elevated surface</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--gray-050)"></div><div class="nm">--gray-050</div><div class="vl">rgb(249,250,251)</div><div class="role">app canvas</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--gray-100)"></div><div class="nm">--gray-100</div><div class="vl">rgb(233,235,239)</div><div class="role">hairline border</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--gray-400)"></div><div class="nm">--gray-400</div><div class="vl">rgb(170,172,180)</div><div class="role">disabled text</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--gray-600)"></div><div class="nm">--gray-600</div><div class="vl">rgb(111,113,124)</div><div class="role">secondary text</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--gray-900)"></div><div class="nm">--gray-900</div><div class="vl">rgb(30,30,30)</div><div class="role">primary text</div></div>
+    </div>
+
+    <h3 style="font-size:14px;color:var(--text-muted);margin:0 0 12px;font-weight:600">Semantic</h3>
+    <div class="grid swatches" style="margin-bottom:28px">
+      <div class="card sw"><div class="chip" style="background:var(--bg)"></div><div class="nm">--bg</div><div class="vl">→ gray-050</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--surface)"></div><div class="nm">--surface</div><div class="vl">→ gray-000</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--border)"></div><div class="nm">--border</div><div class="vl">→ gray-100</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--accent)"></div><div class="nm">--accent</div><div class="vl">→ coral-500</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--text)"></div><div class="nm">--text</div><div class="vl">→ gray-900</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--text-muted)"></div><div class="nm">--text-muted</div><div class="vl">→ gray-600</div></div>
+    </div>
+
+    <h3 style="font-size:14px;color:var(--text-muted);margin:0 0 12px;font-weight:600">Brand · partner & mascot</h3>
+    <div class="grid swatches">
+      <div class="card sw"><div class="chip" style="background:var(--kakao-yellow)"></div><div class="nm">Kakao</div><div class="vl">rgb(249,224,0)</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--apple-chip)"></div><div class="nm">Apple chip</div><div class="vl">rgb(233,235,239)</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--kakao-brown)"></div><div class="nm">Kakao brown</div><div class="vl">#3A1D1D</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--tomato-grad)"></div><div class="nm">Mascot body</div><div class="vl">gradient</div></div>
+      <div class="card sw"><div class="chip" style="background:var(--stem-grad)"></div><div class="nm">Mascot stem</div><div class="vl">gradient</div></div>
+    </div>
+  </section>
+
+  <!-- ============ TYPE ============ -->
+  <section id="type">
+    <div class="sec-head"><h2>Type scale</h2><span class="ko">타이포 스케일</span></div>
+    <p class="sec-note">Pretendard가 본문 전반을 담당하고, Wanted Sans ExtraBlack은 워드마크 전용, SUIT는 버튼 라벨에 사용합니다. 자간은 한글 −0.02em, 버튼 −0.016em, 디스플레이 −0.04em.</p>
+    <div class="card">
+      <div class="type-row"><div class="ds-display" style="font-size:48px">Ailter</div><div class="spec">Display · Wanted Sans · 900 · 56px · −0.04em</div></div>
+      <div class="type-row"><div class="ds-h1">사용자의 연령대를 선택해주세요</div><div class="spec">Title · Pretendard · 700 · 24px</div></div>
+      <div class="type-row"><div class="ds-body">연령대에 따라 추천 콘텐츠와 보호 기능이 달라질 수 있어요</div><div class="spec">Body · Pretendard · 400 · 16px · lh 1.5</div></div>
+      <div class="type-row"><div class="ds-label">13세 이하</div><div class="spec">Label · Pretendard · 500 · 14px</div></div>
+      <div class="type-row"><div style="font-family:var(--font-button);font-weight:500;font-size:14px;letter-spacing:-.016em">카카오로 시작하기</div><div class="spec">Button · SUIT · 500 · 14px · −0.016em</div></div>
+    </div>
+  </section>
+
+  <!-- ============ SPACING ============ -->
+  <section id="spacing">
+    <div class="sec-head"><h2>Spacing &amp; radii</h2><span class="ko">간격 · 라운드</span></div>
+    <div class="grid tok-grid" style="margin-bottom:14px">
+      <div class="card tok"><div class="demo"><div class="bar" style="width:20px"></div></div><div class="nm">--gutter</div><div class="vl">20px · screen edges</div></div>
+      <div class="card tok"><div class="demo"><div class="bar" style="width:16px"></div></div><div class="nm">--gap-options</div><div class="vl">16px · between rows</div></div>
+      <div class="card tok"><div class="demo"><div class="bar" style="width:12px"></div></div><div class="nm">--gap-buttons</div><div class="vl">12px · between logins</div></div>
+    </div>
+    <div class="grid tok-grid">
+      <div class="card tok"><div class="demo"><div class="sq" style="width:64px;height:48px;border-radius:4px"></div></div><div class="nm">--r-sm</div><div class="vl">4px · icon hit-area</div></div>
+      <div class="card tok"><div class="demo"><div class="sq" style="width:64px;height:48px;border-radius:8px"></div></div><div class="nm">--r-md</div><div class="vl">8px · social buttons</div></div>
+      <div class="card tok"><div class="demo"><div class="sq" style="width:64px;height:48px;border-radius:12px"></div></div><div class="nm">--r-lg</div><div class="vl">12px · rows &amp; CTA</div></div>
+    </div>
+  </section>
+
+  <!-- ============ ELEVATION ============ -->
+  <section id="elevation">
+    <div class="sec-head"><h2>Elevation</h2><span class="ko">그림자 시스템</span></div>
+    <p class="sec-note">그림자는 단 두 종류 — 마스코트 스티커와 흰 버튼의 미세한 리프트. 그 외에는 1px 보더로 면을 구분합니다. 컬러·하드 섀도우는 쓰지 않습니다.</p>
+    <div class="grid elev-grid" style="background:var(--bg)">
+      <div class="card elev" style="background:var(--bg);border:none"><div class="box" style="box-shadow:var(--shadow-sticker)">sticker</div><div class="vl" style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--text-muted);margin-top:12px">--shadow-sticker · 0 4px 22.7px rgba(0,0,0,.14)</div></div>
+      <div class="card elev" style="background:var(--bg);border:none"><div class="box" style="box-shadow:var(--shadow-button);border:1px solid var(--border)">button</div><div class="vl" style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--text-muted);margin-top:12px">--shadow-button · 0 1px 2px rgba(0,0,0,.05)</div></div>
+      <div class="card elev" style="background:var(--bg);border:none"><div class="box" style="border:1px solid var(--border)">border-only</div><div class="vl" style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--text-muted);margin-top:12px">1px rgb(233,235,239)</div></div>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTS ============ -->
+  <section id="components">
+    <div class="sec-head"><h2>UI Kit components</h2><span class="ko">컴포넌트</span></div>
+    <div class="grid comp-grid">
+      <div class="card comp">
+        <div class="label">Social login</div>
+        <div class="stack">
+          <button class="ds-social ds-social--kakao"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 3.4C6.75 3.4 2.5 6.78 2.5 10.95c0 2.7 1.79 5.06 4.48 6.4-.2.72-.72 2.62-.82 3.03-.13.5.18.5.39.36.16-.11 2.52-1.71 3.55-2.41.78.11 1.58.17 2.4.17 5.25 0 9.5-3.38 9.5-7.55S17.25 3.4 12 3.4Z" fill="#3A1D1D"/></svg><span>카카오로 시작하기</span></button>
+          <button class="ds-social ds-social--google"><img src="assets/google.png" style="width:19.6px;height:20px" alt="" /><span>구글로 시작하기</span></button>
+          <button class="ds-social ds-social--apple"><img src="assets/apple.svg" style="height:20px" alt="" /><span>애플로 시작하기</span></button>
+        </div>
+      </div>
+
+      <div class="card comp">
+        <div class="label">Option rows</div>
+        <div class="stack stack-16">
+          <button class="ds-option">13세 이하</button>
+          <button class="ds-option" aria-selected="true">14~16세</button>
+          <button class="ds-option">17~19세</button>
+        </div>
+      </div>
+
+      <div class="card comp">
+        <div class="label">Primary CTA</div>
+        <div class="stack">
+          <button class="ds-btn ds-btn--primary" style="width:100%">다음</button>
+          <button class="ds-btn ds-btn--primary" style="width:100%" disabled>다음</button>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin:14px 0 0;line-height:1.5">선택 전까지 비활성(회색)으로 잠겨 있다가, 유효한 선택이 생기면 코랄로 채워집니다.</p>
+      </div>
+
+      <div class="card comp">
+        <div class="label">Header &amp; progress</div>
+        <div style="max-width:300px">
+          <div style="display:flex;align-items:center;justify-content:space-between;height:44px">
+            <svg width="11" height="20" viewBox="0 0 11 20" fill="none"><path d="M9.5 1.5L1.5 10l8 8.5" stroke="rgb(84,84,81)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="ds-label" style="font-weight:400">연령대 선택</span>
+            <span style="width:11px"></span>
+          </div>
+          <div style="display:flex;width:100%;margin-top:8px">
+            <div style="flex:1;height:4px;background:var(--accent)"></div>
+            <div style="flex:1;height:4px;background:var(--border)"></div>
+            <div style="flex:1;height:4px;background:var(--border)"></div>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);margin:14px 0 0">step 1 / 3</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <a class="phone-link" href="ui_kits/mobile-app/index.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="6" y="2" width="12" height="20" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg>
+        클릭형 프로토타입 열기 (로그인 → 연령 선택)
+      </a>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ailter — Onboarding</title>
+
+<!-- Fonts: Pretendard (workhorse), Wanted Sans (logo wordmark), SUIT (social buttons) -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" />
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" />
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --bg: rgb(249,250,251);
+    --surface: rgb(255,255,255);
+    --accent: rgb(255,60,56);
+    --accent-strong: rgb(255,28,0);
+    --accent-tint: rgb(255,248,248);
+    --ink: rgb(30,30,30);
+    --muted: rgb(111,113,124);
+    --border: rgb(233,235,239);
+    --kr: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+    --kr-btn: 'SUIT Variable', SUIT, 'Pretendard Variable', sans-serif;
+    --display: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%;
+    background: #e9ebef;
+    font-family: var(--kr);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root {
+    min-height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px;
+  }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="logo.jsx"></script>
+<script type="text/babel" src="screens.jsx"></script>
+<script type="text/babel">
+  const { useState } = React;
+
+  function App() {
+    const [screen, setScreen] = useState('login');   // 'login' | 'age'
+    const [age, setAge] = useState(null);             // selected option index
+
+    const goAge = () => setScreen('age');
+    const goLogin = () => setScreen('login');
+
+    return (
+      <IOSDevice width={402} height={874}>
+        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg)' }}>
+          <div style={{
+            display: 'flex', width: '200%', height: '100%',
+            transform: screen === 'login' ? 'translateX(0)' : 'translateX(-50%)',
+            transition: 'transform 0.42s cubic-bezier(0.4, 0, 0.15, 1)',
+          }}>
+            <div style={{ width: '50%', height: '100%' }}>
+              <LoginScreen onLogin={goAge} />
+            </div>
+            <div style={{ width: '50%', height: '100%' }}>
+              <AgeScreen
+                active={screen === 'age'}
+                age={age}
+                onSelect={setAge}
+                onBack={goLogin}
+                onNext={() => alert('다음 단계로 이동합니다')}
+              />
+            </div>
+          </div>
+        </div>
+      </IOSDevice>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
