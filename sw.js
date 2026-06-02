@@ -7,6 +7,7 @@ const ASSETS = [
   '/Test_Ailter/ios-frame.jsx',
   '/Test_Ailter/logo.jsx',
   '/Test_Ailter/screens.jsx',
+  '/Test_Ailter/assets/splash-logo.png',
   '/Test_Ailter/assets/logo-mark.svg',
   '/Test_Ailter/assets/petal.svg',
   '/Test_Ailter/assets/stem.svg',
