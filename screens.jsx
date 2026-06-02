@@ -33,7 +33,7 @@ function LoginScreen({ onLogin }) {
     <div style={{
       width: '100%', height: '100%',
       display: 'flex', flexDirection: 'column',
-      paddingTop: 54, paddingBottom: 34,
+      paddingBottom: 34,
       background: 'var(--bg)',
     }}>
       {/* logo + wordmark, optically centered in the open area */}
@@ -109,7 +109,7 @@ function AgeScreen({ active, age, onSelect, onBack, onNext }) {
     <div style={{
       width: '100%', height: '100%',
       display: 'flex', flexDirection: 'column',
-      paddingTop: 54, paddingBottom: 34,
+      paddingBottom: 34,
       background: 'var(--bg)',
     }}>
       {/* header */}

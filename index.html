@@ -44,9 +44,9 @@
     -webkit-font-smoothing: antialiased;
   }
   #root {
-    min-height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    padding: 32px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
   button { font-family: inherit; cursor: pointer; border: none; background: none; }
 </style>
@@ -68,28 +68,31 @@
     const goLogin = () => setScreen('login');
 
     return (
-      <IOSDevice width={402} height={874}>
-        <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', background: 'var(--bg)' }}>
-          <div style={{
-            display: 'flex', width: '200%', height: '100%',
-            transform: screen === 'login' ? 'translateX(0)' : 'translateX(-50%)',
-            transition: 'transform 0.42s cubic-bezier(0.4, 0, 0.15, 1)',
-          }}>
-            <div style={{ width: '50%', height: '100%' }}>
-              <LoginScreen onLogin={goAge} />
-            </div>
-            <div style={{ width: '50%', height: '100%' }}>
-              <AgeScreen
-                active={screen === 'age'}
-                age={age}
-                onSelect={setAge}
-                onBack={goLogin}
-                onNext={() => alert('다음 단계로 이동합니다')}
-              />
-            </div>
+      <div style={{
+        width: '100%', height: '100%',
+        overflow: 'hidden', background: 'var(--bg)',
+        paddingTop: 'env(safe-area-inset-top)',
+        boxSizing: 'border-box',
+      }}>
+        <div style={{
+          display: 'flex', width: '200%', height: '100%',
+          transform: screen === 'login' ? 'translateX(0)' : 'translateX(-50%)',
+          transition: 'transform 0.42s cubic-bezier(0.4, 0, 0.15, 1)',
+        }}>
+          <div style={{ width: '50%', height: '100%' }}>
+            <LoginScreen onLogin={goAge} />
+          </div>
+          <div style={{ width: '50%', height: '100%' }}>
+            <AgeScreen
+              active={screen === 'age'}
+              age={age}
+              onSelect={setAge}
+              onBack={goLogin}
+              onNext={() => alert('다음 단계로 이동합니다')}
+            />
           </div>
         </div>
-      </IOSDevice>
+      </div>
     );
   }
 
